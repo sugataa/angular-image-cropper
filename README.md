@@ -122,8 +122,8 @@ Angular image cropper gives you access to the api, you can see an example [here]
 ```javascript
 // Cropper API available when image is ready.
 vm.getCropperApi = function(api) {
-  api.zoomIn(3);
-  api.zoomOut(2);
+  api.zoom(0.1) // zoom out by a factor of 10%
+  api.zoom(1.1) // zoom in by a factor of 10%
   api.rotate(270);
   api.fit();
   vm.resultImage = api.crop();
@@ -132,8 +132,7 @@ vm.getCropperApi = function(api) {
 * `crop` _function_ return the cropped image in `base64`
 * `fit` _function_ fit the image to the wrapper dimensions (keep the ratio)
 * `rotate` _function_ Apply the rotation with degrees given, should be a modulo of 90 (90, 180, 270, 360), can be negative 
-* `zoomIn` _function_ Apply the zoomIn given
-* `zoomOut` _function_ Apply the zoomOut given
+* `zoom` _function_ Apply the zoom given (to zoom out = factor < 1; to zoom in = factor > 1)
 * `remove` _function_ Remove the cropper
 
 ## License

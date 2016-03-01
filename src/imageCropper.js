@@ -65,8 +65,7 @@ function Cropper(options) {
     crop: this.cropImage.bind(this),
     fit: this.applyFit.bind(this),
     rotate: this.applyRotation.bind(this),
-    zoomIn: this.applyZoomIn.bind(this),
-    zoomOut: this.applyZoomOut.bind(this),
+    zoom: this.applyZoom.bing(this),
     remove: this.remove.bind(this)
   };
 
@@ -121,10 +120,10 @@ Cropper.prototype.bindControls = function() {
     self.applyRotation(90);
   });
   this.elements.controls.zoomIn.addEventListener('click', function() {
-    self.applyZoom(self.zoomInFactor);
+    self.applyZoomIn(self.zoomInFactor);
   });
   this.elements.controls.zoomOut.addEventListener('click', function() {
-    self.applyZoom(self.zoomOutFactor);
+    self.applyZoomOut(self.zoomOutFactor);
   });
   this.elements.controls.fit.addEventListener('click', this.applyFit.bind(this));
   this.elements.controls.crop.addEventListener('click', this.cropImage.bind(this));
@@ -139,6 +138,14 @@ Cropper.prototype.applyZoomIn = function(zoom) {
 };
 Cropper.prototype.applyZoomOut = function(zoom) {
   this.zoomImage(1 / ( 1 + parseFloat(zoom)));
+};
+Cropper.prototype.applyZoom = function(zoom) {
+  if (zoom > 1) {
+    this.zoomImage(parseFloat(zoom));
+  }
+  else {
+    this.zoomImage(1 / ( 1 + parseFloat(zoom)));
+  }
 };
 
 Cropper.prototype.applyFit = function() {
